@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carousel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <section class="carousel">
+    <div class="container">
+      <ul>
+        <li><img src="./img/a.png" alt=""></li>
+        <li><img src="./img/b.png" alt=""></li>
+        <li><img src="./img/c.png" alt=""></li>
+      </ul>
+      <button id="prev">&laquo;</button>
+      <button id="next">&raquo;</button>
+    </div>
+  
+    <nav></nav>
+  </section>
+
+  <script>
+    const next = document.getElementById('next');
+    const prev = document.getElementById('prev');
+    const ul = document.querySelector('ul');
+    const slides = ul.children; //全てのスライドを取得
+    let currentIndex = 0; //スライドの順番
+    const dots = [];
+
+    function updateBtn() {
+      prev.classList.remove('hidden');
+      next.classList.remove('hidden');
+
+      if (currentIndex === 0 ) {
+        prev.classList.add('hidden');
+      }
+      if (currentIndex === slides.length -1 ) {
+        next.classList.add('hidden');
+      }
+    }
+
+    function moveSlides () {
+      const slideWidth = slides[0].getBoundingClientRect().width //スライド一枚分の幅
+      ul.style.transform = `translateX(${-slideWidth * currentIndex}px)`;
+    }
+
+    function setUpDots() {
+    for (let i = 0; i < slides.length; i++) {
+      const button = document.createElement('button');
+      button.addEventListener('click', ()=> {
+        currentIndex = i;
+        
+        upDataDots();
+        updateBtn();
+        moveSlides();
+      })
+      dots.push(button);
+      document.querySelector('nav').appendChild(button);
+    }
+
+    dots[0].classList.add('current');
+  }
+
+  function upDataDots() {
+    dots.forEach(dot => {
+      dot.classList.remove('current');
+    });
+    dots[currentIndex].classList.add('current');
+  }
+    
+    updateBtn(); //初期状態で関数呼び出し
+    setUpDots();
+
+    console.log(slides);
+
+    next.addEventListener('click', () => {
+      currentIndex++;
+      updateBtn(); //nextをクリックした時
+      upDataDots();
+      moveSlides();
+    });
+
+    prev.addEventListener('click', () => {
+      currentIndex--;
+      updateBtn(); //prevをクリックした時
+      upDataDots();
+      moveSlides();
+    });
+
+    window.addEventListener('resize', () => {
+      moveSlides();
+    });
+  </script>
+</body>
+</html>

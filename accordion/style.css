@@ -1,0 +1,31 @@
+.accordion1, .accordion2, .accordion3 {
+  width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.accordion2{
+  width: 100%;
+}
+
+.accordion3{
+  width: 200px;
+  text-align: start;
+}
+
+.accordion-trigger {
+  margin: 0;
+  padding: 10px;
+  display: block;
+  background: #333;
+  color: #fff;
+  border-top: 1px solid #fff;
+}
+
+.accordion-contents {
+  margin: 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  display: none;
+}

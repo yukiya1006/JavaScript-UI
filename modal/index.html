@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Modal</title>
+</head>
+<body>
+  <button id="open-modal">詳細を見る</button>
+
+  <div id="bg-modal" class="hidden"></div>
+
+  <div id="main-modal" class="hidden">
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore, soluta.</p>
+    <button id="close-modal">閉じる</button>
+  </div>
+
+  <script>
+    const open = document.getElementById('open-modal');
+    const bg = document.getElementById('bg-modal');
+    const main = document.getElementById('main-modal');
+    const close = document.getElementById('close-modal');
+
+    open.addEventListener('click', () =>{
+      bg.classList.remove('hidden');
+      main.classList.remove('hidden');
+    });
+
+    bg.addEventListener('click', () =>{
+      bg.classList.add('hidden');
+      main.classList.add('hidden');
+      // close.click();
+    });
+
+    close.addEventListener('click', () =>{
+      bg.classList.add('hidden');
+      main.classList.add('hidden');
+    });
+  </script>
+
+</body>
+</html>
